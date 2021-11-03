@@ -28,7 +28,7 @@ public class Algo8_mergeOverlapping_interval {
 
                     System.out.println("element0: " + Arrays.toString(element0) + " element1:" + Arrays.toString(element1));
 
-                    if (element1[0] <= element0[1] && element0[0] <= element1[1])
+                    if (element1[0] <= element0[1] && element0[0] <= element1[1] && element0[0] < element1[0])
                     {
                         isAnyOverlappingIntervalFound = true;
                         arrayToMerge1 = i;
@@ -36,11 +36,11 @@ public class Algo8_mergeOverlapping_interval {
                         System.out.println("ok");
                         break outerArrays;
                     }
-                    else if (element0[0] <= element1[1] && element1[0] <= element0[1])
+                    else if (element0[0] <= element1[1] && element1[0] <= element0[1] && element1[0] < element0[0])
                     {
                         isAnyOverlappingIntervalFound = true;
-                        arrayToMerge1 = j;
                         arrayToMerge2 = i;
+                        arrayToMerge1 = j;
                         System.out.println("ok");
                         break outerArrays;
                     }
