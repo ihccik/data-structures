@@ -39,8 +39,11 @@ public class MyLinkedList {
         if(isEmpty())
             throw new NoSuchElementException();
 
-        if (first == null)
+        if (first == null || size == 1)
+        {
             first = last = null;
+            size = 0;
+        }
         else {
             var previous = first;
             var current = first;
