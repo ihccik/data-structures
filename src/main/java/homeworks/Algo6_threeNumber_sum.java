@@ -2,6 +2,7 @@ package homeworks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * contains solutions for the question in resources/questions/Algo_6_Three_Number_Sum.pdf
@@ -49,7 +50,32 @@ public class Algo6_threeNumber_sum {
         }
         return matchingNumbersArray;
     }
+
+    // O(n^2) time | O(n) space
+    public static List<Integer[]> optimalSolution(int[] array, int targetSum){
+        Arrays.sort(array);// nlog n
+        List<Integer[]> triplets = new ArrayList<Integer[]>();
+        for (int i = 0; i < array.length - 2; i++) {
+            int left = i + 1;
+            int right = array.length - 1;
+            while (left < right) {
+                int currentSum = array[i] + array[left] + array[right];
+                if (currentSum == targetSum) {
+                    Integer[] newTriplet = {array[i], array[left], array[right]};
+                    triplets.add(newTriplet);
+                    left++;
+                    right--;
+                } else if (currentSum < targetSum) {
+                    left++;
+                } else if (currentSum > targetSum) {
+                    right--;
+                }
+            }
+        }
+        return triplets;
+    }
 }
+
 
 class MatchingNumbers{
     int element1, element2, element3;
